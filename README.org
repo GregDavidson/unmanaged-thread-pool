@@ -1,0 +1,23 @@
+* Super Simple Thread Pool
+
+This is a Super Simple Thread Pool.  It allows the number of
+threads to grow without bounds.
+
+If you're wanting a Thread Pool which actively manages the
+number of working and idle threads according to a policy,
+check out our alternative project ?name?.
+
+#+BEGIN_SRC rust
+impl ThreadPool {
+  pub fn new(size: usize) -> ThreadPool
+	fn execute<F>(&self, f: F)
+		where  F: FnOnce() + Send + 'static
+#+END_SRC
+
+** Idea for reducing the number of threads
+
+The scheduler could close the existing MessageQueue and
+create a new one.  The idle workers could respond to the
+closed MessageQueue by terminating.  When the active workers
+become idle again and try to connect, they could do the
+same.
