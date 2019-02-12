@@ -1,17 +1,18 @@
-* Super Simple Thread Pool
+* Naive Unmanaged Thread Pool
 
-This is a Super Simple Thread Pool.  It allows the number of
-threads to grow without bounds.
+This is a naive Unmanaged Thread Pool.  The number of
+threads may grow arbitarily large.
 
 If you're wanting a Thread Pool which actively manages the
 number of working and idle threads according to a policy,
-check out our alternative project ?name?.
+check out our alternative project Managed-Thread-Pool.
 
-#+BEGIN_SRC rust
++BEGIN_SRC rust
 impl ThreadPool {
-  pub fn new(size: usize) -> ThreadPool
-	fn execute<F>(&self, f: F)
+  fn new( ) -> ThreadPool
+  fn execute<F>(&self, f: F) -> Result( (), ExecuteFail )
 		where  F: FnOnce() + Send + 'static
+  enum ExecuteFail {Disconnected};
 #+END_SRC
 
 ** Idea for reducing the number of threads
